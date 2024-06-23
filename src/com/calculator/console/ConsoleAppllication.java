@@ -4,6 +4,9 @@ package com.calculator.console;
 import com.calculator.model.Operation;
 import com.calculator.service.OperationService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ConsoleAppllication implements Application {
     private final ConsoleReader consoleReader = new ConsoleReader();
     private final ConsoleWriter consoleWriter = new ConsoleWriter();
@@ -24,9 +27,20 @@ public class ConsoleAppllication implements Application {
             Operation operation = new Operation(num1, num2, type);
             Operation execute = operationService.execute(operation);
             consoleWriter.write("Result : " + execute.getResult());
-            consoleWriter.write("Exit : [y/N] \n");
+            consoleWriter.write("History : ");
 
-
+            for (Operation op : operationService.getOperations()) {
+                consoleWriter.write(String.format("Operation %s %s %s %s: ",
+                        op.getNum1(),
+                        op.getNum2(),
+                        op.getResult(),
+                        op.getType()));
+            }
+            consoleWriter.write("Exit : [y/N] ");
+            String key = consoleReader.readCommand();
+            if (key.equals("y")) {
+                break;
+            }
         }
     }
 }

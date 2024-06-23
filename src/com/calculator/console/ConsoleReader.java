@@ -12,5 +12,8 @@ public class ConsoleReader {
     public String readOperation() {
         return scanner.next();
     }
+    public String readCommand() {
+        return scanner.next();
+    }
 
 }

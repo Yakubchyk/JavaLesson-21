@@ -4,6 +4,8 @@ import com.calculator.model.Operation;
 import com.calculator.storage.FileOperationStorage;
 import com.calculator.storage.OperationStorage;
 
+import java.util.List;
+
 public class OperationService {
 
     private final OperationStorage operationStorage = new FileOperationStorage();
@@ -30,5 +32,8 @@ public class OperationService {
         }
         throw new IllegalArgumentException("com.calculator.model.Operation type not supported");
 
+    }
+    public List<Operation> getOperations() {
+        return operationStorage.findAll();
     }
 }
