@@ -7,5 +7,7 @@ import java.util.List;
 public interface OperationStorage {
     void save(Operation operation);
     public List<Operation> findAll();
+    void clear(Operation operation);
+
 
 }

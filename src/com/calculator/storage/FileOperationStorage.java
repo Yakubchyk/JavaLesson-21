@@ -2,7 +2,12 @@ package com.calculator.storage;
 
 import com.calculator.model.Operation;
 
+import java.awt.desktop.OpenFilesEvent;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -39,5 +44,19 @@ public class FileOperationStorage implements OperationStorage {
             throw new RuntimeException(e);
         }
 
+    }
+
+    @Override
+    public void clear(Operation operation) {
+
+    }
+
+    public void clear() {
+        Path path = Paths.get("history.txt");
+        try {
+            Files.newBufferedWriter(path, StandardOpenOption.TRUNCATE_EXISTING).close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

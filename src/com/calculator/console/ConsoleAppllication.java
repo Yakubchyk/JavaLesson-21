@@ -3,9 +3,7 @@ package com.calculator.console;
 
 import com.calculator.model.Operation;
 import com.calculator.service.OperationService;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.calculator.storage.FileOperationStorage;
 
 public class ConsoleAppllication implements Application {
     private final ConsoleReader consoleReader = new ConsoleReader();
@@ -36,7 +34,15 @@ public class ConsoleAppllication implements Application {
                         op.getResult(),
                         op.getType()));
             }
+            consoleWriter.write("Clear History File. Enter command [clear]: ");
             consoleWriter.write("Exit : [y/N] ");
+            String clearHistoryFile = consoleReader.readCommand();
+            if (clearHistoryFile.equals("clear")) {
+                FileOperationStorage fileOperationStorage = new FileOperationStorage();
+                fileOperationStorage.clear();
+                break;
+            }
+
             String key = consoleReader.readCommand();
             if (key.equals("y")) {
                 break;
